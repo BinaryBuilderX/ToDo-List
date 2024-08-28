@@ -1,38 +1,232 @@
-.App {
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  overflow-x: hidden;
+}
+
+.sidebar {
+  width: 100%;
+  height: 15vh;
+  padding: 20px;
+  background-color: #292b2c;
+  color: white;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column; 
+   align-items: center; 
+   justify-content: center; 
+  
+}
+
+.sidebar button {
+  margin-top: 0px;
+  padding: 12px;
+  width: 100%; 
+  max-width: 200px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-size: 1.1em;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+}
+
+.sidebar h1 {
+  font-size: 1.8em;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-weight: 700;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sidebar button:hover {
+  background-color: #0056b3;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.task-board-container {
+  position: relative;
+  flex-basis: calc(33.333% - 20px); 
+  margin-bottom: 20px;
+}
+
+.task-board {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  height: 55vh;
+}
+
+.task-board:hover {
+  transform: translateY(-5px);
+}
+
+.task-board h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.task-board ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-board li {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.3s ease;
+}
+
+.task-board li:hover {
+  background-color: #f1f1f1;
+}
+
+.task-board li.completed span {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.task-board input {
+  width: calc(100% - 110px);
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease;
+}
+
+.task-board input:focus {
+  border-color: #007bff;
+}
+
+.task-board input::placeholder {
+  color: #aaa;
+  font-size: 0.9em;
+}
+
+.task-board button {
+  padding: 10px;
+  margin-left: 10px;
+  background-color: #28a745;
   color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.task-board button:hover {
+  background-color: #218838;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.task-input {
+  display: flex;
+  align-items: center;
+}
+
+.delete-board-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.delete-board-button:hover {
+  color: #c82333;
+}
+
+@media (min-width: 1200px) {
+  .main-content {
+    padding: 20px;
+    justify-content: space-between;
   }
-  to {
-    transform: rotate(360deg);
+
+  .task-board-container {
+    flex-basis: calc(33.333% - 20px);
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 768px) {
+  .task-board-container {
+    flex-basis: calc(50% - 20px);
+  }
+
+  .task-board input {
+    width: calc(100% - 80px);
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .main-content {
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .task-board-container {
+    flex-basis: 100%;
+  }
+
+  .task-board input {
+    width: calc(100% - 80px);
+    font-size: 0.9em;
+  }
+
+  .task-board button {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar h1 {
+    font-size: 1.5em;
+  }
+
+  .sidebar button {
+    font-size: 1em;
+  }
+
+  .task-board h2 {
+    font-size: 1.3em;
+  }
+
+  .task-board input {
+    padding: 8px;
+    font-size: 0.9em;
+  }
+
+  .task-board button {
+    padding: 8px;
+    font-size: 0.9em;
   }
 }
